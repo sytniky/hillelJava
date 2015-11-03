@@ -1,4 +1,4 @@
-package org.hillel.lesson1.calculator;
+package org.hillel.lesson1;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -8,8 +8,8 @@ import java.util.Scanner;
  */
 public class Calculator {
 
-    public static Double calc(Character operator, Double x, Double y) {
-        Double result;
+    public static double calc(char operator, double x, double y) {
+        double result;
         switch (operator) {
             case '+': result = sum(x, y); break;
             case '-': result = subtract(x, y); break;
@@ -20,27 +20,27 @@ public class Calculator {
         return result;
     }
 
-    public static Double sum(Double x, Double y) {
+    public static double sum(double x, double y) {
         return x + y;
     }
 
-    public static Double subtract(Double x, Double y) {
+    public static double subtract(double x, double y) {
         return x - y;
     }
 
-    public static Double multiply(Double x, Double y) {
+    public static double multiply(double x, double y) {
         return x * y;
     }
 
-    public static Double devide(Double x, Double y) {
+    public static double devide(double x, double y) {
         if (0 == y) throw new RuntimeException("Division by zero");
         return x / y;
     }
 
     public static void main(String[] args) {
 
-        Double[] operands = new Double[2];
-        Character[] operators = new Character[] {'+', '-', '*', '/'};
+        double[] operands = new double[2];
+        char[] operators = new char[] {'+', '-', '*', '/'};
         Scanner sc;
 
         for (int i = 0; i < operands.length; i++) {
@@ -52,7 +52,7 @@ public class Calculator {
                 sc.useLocale(Locale.US);
 
                 if (sc.hasNextDouble()) {
-                    Double val = sc.nextDouble();
+                    double val = sc.nextDouble();
                     operands[i] = val;
                     accepted = true;
                     System.out.println("Your input <"
@@ -63,7 +63,7 @@ public class Calculator {
             } while (!accepted);
         }
 
-        for (Character operator : operators) {
+        for (char operator : operators) {
             System.out.println("Result of operation '"
                     + operator + "' is <"
                     + Calculator.calc(operator, operands[0], operands[1]) + ">");
