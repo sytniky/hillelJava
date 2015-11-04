@@ -11,13 +11,29 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
 
-        List<Integer> list = new LinkedList<Integer>();
-        List<Integer> ls = Arrays.asList(1, 2, 3);
-        System.out.println(ls);
+        // TEST SEQUENCE
+        int[] seq = new int[50];
+        for (int i = 0, j = -15; i < seq.length; i++, j++) {
+            seq[i] = j;
+        }
+        System.out.println(Arrays.toString(seq));
+
+        for (int i : seq) {
+            if (PrimeNumber.isPrime(i)) {
+                System.out.print(i + " ");
+            }
+        }
+
+//        System.out.print(Long.MAX_VALUE);
 
 
-        Collections.addAll(list, 1, 2);
-        System.out.println(list);
+//        List<Integer> list = new LinkedList<Integer>();
+//        List<Integer> ls = Arrays.asList(1, 2, 3);
+//        System.out.println(ls);
+//
+//
+//        Collections.addAll(list, 1, 2);
+//        System.out.println(list);
 
 //        int i = 0;
 //        while (i <= 10) {
