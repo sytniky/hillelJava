@@ -1,99 +1,80 @@
 package org.hillel.lesson2;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.Console;
+import java.util.*;
+
 
 /**
  * Created by yuriy on 02.11.15.
  */
 public class Test {
+
     public static void main(String[] args) {
 
-        // TEST SEQUENCE
-        int[] seq = new int[50];
-        for (int i = 0, j = -15; i < seq.length; i++, j++) {
-            seq[i] = j;
-        }
-        System.out.println(Arrays.toString(seq));
+//        Console cons = System.console();
+//        String pas = cons.readLine("Password: ");
+//        System.out.println(pas);
 
-        for (int i : seq) {
-            if (PrimeNumber.isPrime(i)) {
-                System.out.print(i + " ");
+
+        System.out.println("Write, please, width: ");
+        Scanner scanner = new Scanner(System.in);
+        int width = scanner.nextInt();
+
+        System.out.println("Write, please, height: ");
+        int heigth = scanner.nextInt();
+
+        System.out.println("Thx, you've entered width: " + width + " and height: " +heigth);
+        System.out.println("Result of task a: ");
+        int i;
+        int j;
+//--------------------------------------------------------------
+        for (i = 0; i<heigth; i++) {
+            for (j = 0; j<width; j++) {
+                if (i == 0 || i == heigth -1){
+                    System.out.print("*");
+                } else if (j == 0 || j == width -1) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
             }
+            System.out.println();
         }
+//        -----------------------------------------
+        System.out.println("Result of task b: ");
+        for (i = 0; i < heigth; i++) {
+            for (j = 0; j < width; j++) {
+                if(i==0 || j==0 || i==heigth-1 || j ==width-1){
+                    System.out.print("*");
+                }
+                else
+                if(Math.abs(i-j*(double)(heigth-1)/(width-1))<0.40 || Math.abs(j-i*(double)(width-1)/(heigth-1))<0.40) {
+                    System.out.print("*");
+                }
+                else if (Math.abs(i-(width-1 - j)*(double)(heigth-1)/(width-1))<0.40 || Math.abs(j-(heigth-1 - i)*(double)(width-1)/(heigth-1))<0.40){
+                    System.out.print("*");
+                } else
+                {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+//        -------------------------------------
+        System.out.println("Result of task c: ");
+        for (i = 0; i < heigth; i++) {
 
-//        System.out.print(Long.MAX_VALUE);
+            for (j = 0; j < width; j++) {
 
-
-//        List<Integer> list = new LinkedList<Integer>();
-//        List<Integer> ls = Arrays.asList(1, 2, 3);
-//        System.out.println(ls);
-//
-//
-//        Collections.addAll(list, 1, 2);
-//        System.out.println(list);
-
-//        int i = 0;
-//        while (i <= 10) {
-//            System.out.println(i);
-//            i = i + 1;
-//        }
-//
-//        int j = 0;
-//        do {
-//            System.out.println(j);
-//            j = j + 1;
-//        } while (j <= 10);
-//
-//        for (int k = 0; k <= 10; k++) {
-//            System.out.println(k);
-//        }
-
-//        Double first = 2.3;
-//        Double second = 23d;
-//
-//        String operation = "+";
-
-//        if (operation == 0) {
-//            System.out.println(first + second);
-//        } else if (operation == 1) {
-//            System.out.println(first - second);
-//        } else if (operation == 2) {
-//            System.out.println(first * second);
-//        } else if (operation == 3) {
-//            System.out.println(first / second);
-//        } else {
-//            System.out.println("Error");
-//        }
-
-
-//        switch (operation) {
-//            case "+":
-//                System.out.println(first + second);
-//                break;
-//            case "-":
-//                System.out.println(first - second);
-//                break;
-//            case "*":
-//                System.out.println(first * second);
-//                break;
-//            case "/":
-//                System.out.println(first / second);
-//                break;
-//            default:
-//                System.out.println("Error");
-//                break;
-//        }
-
-//        String srting = "Hello " + "YURIY";
-//        System.out.println(srting);
-//
-//        int i = 0;
-//        if (i == 0)
-////            System.out.print("i is 0");
-//            System.out.print("Something " + i);
+                if ((i+j) % 2 == 0 ) {
+                    System.out.print("*");
+                } else
+                {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
     }
 
 }
