@@ -29,6 +29,22 @@ public class Student {
         this.surname = surname;
     }
 
+    public int compareSurname(Student sStudent) {
+
+        String fString = getSurname();
+        String sString = sStudent.getSurname();
+
+        return fString.compareTo(sString);
+    }
+
+    public static int compareSurname(Student fStudent, Student sStudent) {
+
+        String fString = fStudent.getSurname();
+        String sString = sStudent.getSurname();
+
+        return fString.compareTo(sString);
+    }
+
     public String toString() {
         return "{name: " + getName() + ", " +
                 "surname: " + getSurname() + "}";

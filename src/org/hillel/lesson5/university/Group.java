@@ -16,7 +16,7 @@ public class Group {
     }
 
     public Group() {
-        this("n/a", 5);
+        this("n/a", 1);
     }
 
     public String getName() {
@@ -87,7 +87,7 @@ public class Group {
         }
     }
 
-    public Student[] trim(Student[] students) {
+    public static Student[] trim(Student[] students) {
         Group group = new Group();
         for (int i = 0; i < students.length; i++) {
             if (students[i] != null) {
@@ -95,6 +95,86 @@ public class Group {
             }
         }
         return group.getStudents();
+    }
+
+    public Student[] merge(Student[] newStudents) {
+
+        Student[] resultList = new Student[students.length + newStudents.length];
+        int studentIndex = 0;
+        int newStudentIndex = 0;
+        int resultIndex = 0;
+
+        while (studentIndex < students.length || newStudentIndex < newStudents.length) {
+            if (studentIndex < students.length) {
+                resultList[resultIndex] = students[studentIndex];
+                studentIndex++;
+            } else if (newStudentIndex < newStudents.length) {
+                resultList[resultIndex] = newStudents[newStudentIndex];
+                newStudentIndex++;
+            }
+            resultIndex++;
+        }
+
+        setStudents(trim(resultList));
+
+        return students;
+    }
+
+    public static Student[] merge(Student[] firstList, Student[] secondList) {
+
+        Student[] resultList = new Student[firstList.length + secondList.length];
+        int firstListIndex = 0;
+        int secondListIndex = 0;
+        int resultListIndex = 0;
+
+        while (firstListIndex < firstList.length || secondListIndex < secondList.length) {
+            if (firstListIndex < firstList.length
+                    && (secondListIndex == secondList.length
+                    || firstList[firstListIndex].compareSurname(secondList[secondListIndex]) < 0)) {
+
+                resultList[resultListIndex] = firstList[firstListIndex];
+                firstListIndex++;
+
+            } else if (secondListIndex < secondList.length
+                    && (firstListIndex == firstList.length
+                    || firstList[firstListIndex].compareSurname(secondList[secondListIndex]) >= 0)) {
+
+                resultList[resultListIndex] = secondList[secondListIndex];
+                secondListIndex++;
+
+            }
+            resultListIndex++;
+        }
+
+        return trim(resultList);
+    }
+
+    public void sort() {
+        students = mergeSort(students);
+    }
+
+    private Student[] mergeSort(Student[] listOne) {
+        if (listOne.length <= 1) return listOne;
+        else {
+            Student[] fpart = new Student[listOne.length / 2];
+            int fpartIt = 0;
+            Student[] spart = new Student[listOne.length / 2 + listOne.length % 2];
+            int spartIt = 0;
+            for (int i = 0; i < listOne.length; i++) {
+                if (i < listOne.length / 2) {
+                    fpart[fpartIt] = listOne[i];
+                    fpartIt++;
+                } else {
+                    spart[spartIt] = listOne[i];
+                    spartIt++;
+
+                }
+            }
+            fpart = mergeSort(fpart);
+            spart = mergeSort(spart);
+            Student[] result = merge(fpart, spart);
+            return result;
+        }
     }
 
     public String toString() {
@@ -112,18 +192,24 @@ public class Group {
         try {
 
             Group group1 = new Group("A1", 3);
-            group1.addStudent(new Student("Ivan", "Ivanov"));
+            group1.addStudent(new Student("Victor", "Yuschencko"));
             group1.addStudent(new Student("Petr", "Petrov"));
             group1.addStudent(new Student("Vasa", "Pupkin"));
             System.out.println(group1);
 
-            String hasStudent = "Petrov";
-            System.out.println("Checks student with surname '" + hasStudent + "': " +
-                    group1.hasStudentWithSurname(hasStudent));
+            System.out.println("----------------------------------------------------------");
 
-            String getStudent = "Petrov";
-            System.out.println("Returns student with surname '" + getStudent + "':\n\t\t" +
-                    group1.getStudentWithSurname(getStudent));
+                String hasStudent = "Petrov";
+                System.out.println("Check if exist and return index of student with surname '" + hasStudent + "': " +
+                        group1.hasStudentWithSurname(hasStudent));
+
+                System.out.println("----------------------------------------------------------");
+
+                String getStudent = "Petrov";
+                System.out.println("Returns student with surname '" + getStudent + "':\n\t\t" +
+                        group1.getStudentWithSurname(getStudent));
+
+            System.out.println("----------------------------------------------------------");
 
             Group group2 = new Group();
             group2.addStudent(new Student("Ivan2", "Ivanov2"));
@@ -134,6 +220,7 @@ public class Group {
             group2.addStudent(new Student("Vasa22", "Pupkin22"));
             System.out.println(group2);
 
+            System.out.println("----------------------------------------------------------");
 
             String delStudent = "Pupkin2";
             group2.removeStudentWithSurname(delStudent);
@@ -142,6 +229,26 @@ public class Group {
             for (Student student : group2.getStudents()) {
                 System.out.println("\t\t" + student);
             }
+
+            System.out.println("----------------------------------------------------------");
+
+            Student[] students = group1.merge(group2.getStudents());
+    //           Student[] students = Group.merge(group1.getStudents(), group2.getStudents());
+            System.out.println("Merged students: " + Arrays.toString(students));
+
+    //            System.out.println("Trimmed students: " + Arrays.toString(Group.trim(students)));
+
+            System.out.println("----------------------------------------------------------");
+
+            System.out.println("This is a state of group after merge");
+            System.out.println(group1);
+
+            System.out.println("----------------------------------------------------------");
+
+            System.out.println("This is a state of group after sort");
+            group1.sort();
+            System.out.println(group1);
+
 
         } catch (NoSuchStudentException e) {
             System.err.println(e.getMessage());
