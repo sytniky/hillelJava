@@ -27,13 +27,12 @@ public class Group {
         this.name = name;
     }
 
-    public Group setStudents(Student[] students) {
-        this.students = students;
-        return this;
+    public Student[] getStudents() {
+        return students;
     }
 
-    public Student[] getStudents() {
-        return this.students;
+    public void setStudents(Student[] students) {
+        this.students = students;
     }
 
     public int addStudent(Student student) {
@@ -177,6 +176,7 @@ public class Group {
         }
     }
 
+    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("Group: " + getName() + "\n\t students:\n\t\t");
@@ -189,35 +189,174 @@ public class Group {
 
     public static void main(String[] args) {
 
+        ///////////////////////////////////////////////
+        //                   TEST                    //
+        ///////////////////////////////////////////////
+
         try {
 
             Group group1 = new Group("A1", 3);
-            group1.addStudent(new Student("Victor", "Yuschencko"));
-            group1.addStudent(new Student("Petr", "Petrov"));
-            group1.addStudent(new Student("Vasa", "Pupkin"));
+
+            group1.addStudent(new Student(
+                    "Victor",
+                    "Yuschencko",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Mathematics"),
+                                    (byte) 100
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-10"),
+                            new Visit("2015-11-11"),
+                            new Visit("2015-11-12")
+
+                    }
+            ));
+
+
+            group1.addStudent(new Student(
+                    "Petr",
+                    "Petrov",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 35
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-01"),
+                            new Visit("2015-11-02"),
+                            new Visit("2015-11-03")
+
+                    }
+            ));
+
+
+            group1.addStudent(new Student(
+                    "Vasa",
+                    "Pupkin",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 90
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-04"),
+                            new Visit("2015-11-05"),
+                            new Visit("2015-11-06")
+
+                    }
+            ));
+
             System.out.println(group1);
 
             System.out.println("----------------------------------------------------------");
 
-                String hasStudent = "Petrov";
-                System.out.println("Check if exist and return index of student with surname '" + hasStudent + "': " +
-                        group1.hasStudentWithSurname(hasStudent));
+            String hasStudent = "Petrov";
+            System.out.println("Check if exist and return index of student with surname '" + hasStudent + "': " +
+                    group1.hasStudentWithSurname(hasStudent));
 
-                System.out.println("----------------------------------------------------------");
+            System.out.println("----------------------------------------------------------");
 
-                String getStudent = "Petrov";
-                System.out.println("Returns student with surname '" + getStudent + "':\n\t\t" +
-                        group1.getStudentWithSurname(getStudent));
+            String getStudent = "Petrov";
+            System.out.println("Returns student with surname '" + getStudent + "':\n\t\t" +
+                    group1.getStudentWithSurname(getStudent));
 
             System.out.println("----------------------------------------------------------");
 
             Group group2 = new Group();
-            group2.addStudent(new Student("Ivan2", "Ivanov2"));
-            group2.addStudent(new Student("Petr2", "Petrov2"));
-            group2.addStudent(new Student("Vasa2", "Pupkin2"));
-            group2.addStudent(new Student("Ivan22", "Ivanov22"));
-            group2.addStudent(new Student("Petr22", "Petrov22"));
-            group2.addStudent(new Student("Vasa22", "Pupkin22"));
+
+            group2.addStudent(new Student(
+                    "Ivan2",
+                    "Ivanov2",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 40
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-02"),
+                            new Visit("2015-11-03"),
+                            new Visit("2015-11-04")
+
+                    }
+            ));
+
+
+            group2.addStudent(new Student(
+                    "Petr2",
+                    "Petrov2",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 40
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-02"),
+                            new Visit("2015-11-03"),
+                            new Visit("2015-11-04")
+
+                    }
+            ));
+
+
+            group2.addStudent(new Student(
+                    "Vasa2",
+                    "Pupkin2",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 40
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-02"),
+                            new Visit("2015-11-03"),
+                            new Visit("2015-11-04")
+
+                    }
+            ));
+
+
+            group2.addStudent(new Student(
+                    "Ivan22",
+                    "Ivanov22",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 45
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-02"),
+                            new Visit("2015-11-03"),
+                            new Visit("2015-11-04")
+
+                    }
+            ));
+
+
+            group2.addStudent(new Student(
+                    "Petr22",
+                    "Petrov22",
+                    new Mark[]{
+                            new Mark(
+                                    new Subject("Biology"),
+                                    (byte) 45
+                            )
+                    },
+                    new Visit[]{
+                            new Visit("2015-11-02"),
+                            new Visit("2015-11-03"),
+                            new Visit("2015-11-04")
+
+                    }
+            ));
+
             System.out.println(group2);
 
             System.out.println("----------------------------------------------------------");
@@ -233,10 +372,10 @@ public class Group {
             System.out.println("----------------------------------------------------------");
 
             Student[] students = group1.merge(group2.getStudents());
-    //           Student[] students = Group.merge(group1.getStudents(), group2.getStudents());
+            //           Student[] students = Group.merge(group1.getStudents(), group2.getStudents());
             System.out.println("Merged students: " + Arrays.toString(students));
 
-    //            System.out.println("Trimmed students: " + Arrays.toString(Group.trim(students)));
+            //            System.out.println("Trimmed students: " + Arrays.toString(Group.trim(students)));
 
             System.out.println("----------------------------------------------------------");
 
