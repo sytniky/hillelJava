@@ -14,9 +14,9 @@ public class Zoo {
         animals.add(animal);
     }
 
-    public void voiceAll() {
+    public void printAnimalVoices() {
         for (Animal animal : animals) {
-            System.out.println(animal.getVoice());
+            animal.printVoice();
         }
     }
 }

@@ -53,5 +53,7 @@ public abstract class Animal {
         return "Hello, ";
     }
 
-    public abstract void printVoice();
+    public void printVoice() {
+        System.out.println(getVoice());
+    }
 }

@@ -1,4 +1,6 @@
-package org.hillel.lesson6.inheritance;
+package org.hillel.lesson6.inheritance.animal;
+
+import org.hillel.lesson6.inheritance.Animal;
 
 /**
  * Created by yuriy on 24.11.15.
