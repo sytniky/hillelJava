@@ -21,4 +21,9 @@ public class Wild extends Animal {
     public void setPredator(boolean predator) {
         isPredator = predator;
     }
+
+    @Override
+    public String getVoice() {
+        return super.getVoice() + ", I am a wild animal";
+    }
 }

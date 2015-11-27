@@ -40,7 +40,7 @@ public abstract class Domestic extends Animal {
 
     public String getVoice() {
         String result = super.getVoice();
-        result += "my name is ";
+        result += ", my name is ";
         result += getName();
         return result;
     }

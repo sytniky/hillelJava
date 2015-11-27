@@ -50,7 +50,7 @@ public abstract class Animal {
     }
 
     public String getVoice() {
-        return "Hello, ";
+        return "Hello";
     }
 
     public void printVoice() {
