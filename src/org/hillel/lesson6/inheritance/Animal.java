@@ -56,4 +56,18 @@ public abstract class Animal {
     public void printVoice() {
         System.out.println(getVoice());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Animal animal = (Animal) o;
+
+        if (id != animal.id) return false;
+        if (age != animal.age) return false;
+        if (Double.compare(animal.weight, weight) != 0) return false;
+        return !(color != null ? !color.equals(animal.color) : animal.color != null);
+
+    }
 }
