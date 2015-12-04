@@ -4,6 +4,7 @@ import org.hillel.lesson6.inheritance.animal.domestic.Cat;
 import org.hillel.lesson6.inheritance.animal.domestic.Dog;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by yuriy on 03.12.15.
@@ -95,10 +96,14 @@ public class ArrayList {
         this.list = new Object[0];
     }
 
-    private void validateIndex(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
+    public boolean retainAll(ArrayList input) {
+        Objects.requireNonNull(input);
+        return batchRemove(input, true);
+    }
+
+    public boolean removeAll(ArrayList input) {
+        Objects.requireNonNull(input);
+        return batchRemove(input, false);
     }
 
     @Override
@@ -107,6 +112,41 @@ public class ArrayList {
                 "list=" + Arrays.toString(list) +
                 ", size=" + size +
                 '}';
+    }
+
+    private void validateIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private boolean batchRemove(ArrayList input, boolean complement) {
+        final Object[] elementData = this.list;
+        int r = 0, w = 0;
+        boolean modified = false;
+       try {
+            for (; r < size; r++)
+                if (input.contains(elementData[r]) == complement)
+                    elementData[w++] = elementData[r];
+        } finally {
+            // Preserve behavioral compatibility with AbstractCollection,
+            // even if c.contains() throws.
+            if (r != size) {
+                System.arraycopy(elementData, r,
+                        elementData, w,
+                        size - r);
+                w += size - r;
+            }
+            if (w != size) {
+                // clear to let GC do its work
+                for (int i = w; i < size; i++)
+                    elementData[i] = null;
+              //  modCount += size - w;
+                size = w;
+                modified = true;
+            }
+        }
+        return modified;
     }
 
     public static void main(String[] args) {
@@ -135,6 +175,7 @@ public class ArrayList {
         System.out.println("size(): " + list.size());
 
         ArrayList list2 = new ArrayList();
+        list2.add(new Cat(1, 1, 0.3, "black", "Kuzya", true));
         list2.add(new Dog(4, 5, 2.52, "grey", "Bob", true));
         list2.add(new Cat(5, 3, 0.52, "white", "Murka", true));
 
@@ -147,8 +188,20 @@ public class ArrayList {
 
         System.out.println(list);
 
-        list.add(new Cat(1, 3, 0.52, "white", "Murka", true));
+        list.add(new Cat(1, 1, 0.3, "black", "Kuzya", true));
+        list.add(new Dog(2, 4, 3, "black", "Amur", true));
 
         System.out.println(list);
+
+        System.out.println("retainAll(ArrayList list): " +
+                list.retainAll(list2));
+
+        System.out.println(list);
+
+        System.out.println("removeAll(ArrayList input): " +
+                list.removeAll(list2));
+
+        System.out.println(list);
+
     }
 }
