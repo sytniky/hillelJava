@@ -141,7 +141,7 @@ public class ArrayList {
                 // clear to let GC do its work
                 for (int i = w; i < size; i++)
                     elementData[i] = null;
-              //  modCount += size - w;
+//                modCount += size - w;
                 size = w;
                 modified = true;
             }
