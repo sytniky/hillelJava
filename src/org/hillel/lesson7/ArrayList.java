@@ -129,19 +129,9 @@ public class ArrayList {
                 if (input.contains(elementData[r]) == complement)
                     elementData[w++] = elementData[r];
         } finally {
-            // Preserve behavioral compatibility with AbstractCollection,
-            // even if c.contains() throws.
-            if (r != size) {
-                System.arraycopy(elementData, r,
-                        elementData, w,
-                        size - r);
-                w += size - r;
-            }
             if (w != size) {
-                // clear to let GC do its work
                 for (int i = w; i < size; i++)
                     elementData[i] = null;
-//                modCount += size - w;
                 size = w;
                 modified = true;
             }
@@ -154,49 +144,50 @@ public class ArrayList {
         ArrayList list = new ArrayList();
         list.add(new Dog(1, 2, 2.5, "grey", "Tusik", true));
         list.add(new Cat(2, 2, 0.5, "white", "Tishka", true));
+        list.add(new Cat(5, 3, 0.52, "white", "Murka", true));
 
         System.out.println(list);
 
-        System.out.println("size(): " + list.size());
-
-        System.out.println("isEmpty(): " + list.isEmpty());
-
-        System.out.println("contains(Object object): " +
-                list.contains(new Cat(2, 2, 0.5, "white", "Tishka", true)));
-
-        System.out.println("add(Object object): " +
-                list.add(new Dog(3, 1, 1.5, "black", "Barsik", true)));
-
-        System.out.println("remove(Object object): " +
-                list.remove(new Cat(2, 2, 0.5, "white", "Tishka", true)));
-
-        System.out.println(list);
-
-        System.out.println("size(): " + list.size());
+//        System.out.println("size(): " + list.size());
+//
+//        System.out.println("isEmpty(): " + list.isEmpty());
+//
+//        System.out.println("contains(Object object): " +
+//                list.contains(new Cat(2, 2, 0.5, "white", "Tishka", true)));
+//
+//        System.out.println("add(Object object): " +
+//                list.add(new Dog(3, 1, 1.5, "black", "Barsik", true)));
+//
+//        System.out.println("remove(Object object): " +
+//                list.remove(new Cat(2, 2, 0.5, "white", "Tishka", true)));
+//
+//        System.out.println(list);
+//
+//        System.out.println("size(): " + list.size());
 
         ArrayList list2 = new ArrayList();
         list2.add(new Cat(1, 1, 0.3, "black", "Kuzya", true));
         list2.add(new Dog(4, 5, 2.52, "grey", "Bob", true));
         list2.add(new Cat(5, 3, 0.52, "white", "Murka", true));
 
-        System.out.println("addAll(ArrayList list): " +
-                list.addAll(list2));
+//        System.out.println("addAll(ArrayList list): " +
+//                list.addAll(list2));
+//
+//        System.out.println(list);
+//
+//        list.clear();
+//
+//        System.out.println(list);
+//
+//        list.add(new Cat(1, 1, 0.3, "black", "Kuzya", true));
+//        list.add(new Dog(2, 4, 3, "black", "Amur", true));
+//
+//        System.out.println(list);
 
-        System.out.println(list);
-
-        list.clear();
-
-        System.out.println(list);
-
-        list.add(new Cat(1, 1, 0.3, "black", "Kuzya", true));
-        list.add(new Dog(2, 4, 3, "black", "Amur", true));
-
-        System.out.println(list);
-
-        System.out.println("retainAll(ArrayList list): " +
-                list.retainAll(list2));
-
-        System.out.println(list);
+//        System.out.println("retainAll(ArrayList list): " +
+//                list.retainAll(list2));
+//
+//        System.out.println(list);
 
         System.out.println("removeAll(ArrayList input): " +
                 list.removeAll(list2));
