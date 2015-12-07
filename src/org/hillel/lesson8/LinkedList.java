@@ -3,10 +3,7 @@ package org.hillel.lesson8;
 import org.hillel.lesson6.inheritance.animal.domestic.Cat;
 import org.hillel.lesson6.inheritance.animal.domestic.Dog;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * Created by yuriy on 07.12.15.
@@ -16,6 +13,18 @@ public class LinkedList implements List {
     private Node firstNode;
     private Node lastNode;
     private int size = 0;
+
+    public Object getFirst() {
+        if (firstNode == null)
+            throw new NoSuchElementException();
+        return firstNode.item;
+    }
+
+    public Object getLast() {
+        if (lastNode == null)
+            throw new NoSuchElementException();
+        return lastNode.item;
+    }
 
     @Override
     public int size() {
@@ -181,8 +190,8 @@ public class LinkedList implements List {
             } else {
                 lastNode.next = newNode;
             }
-            lastNode = newNode;
         }
+        lastNode = newNode;
         size++;
     }
 
@@ -203,5 +212,8 @@ public class LinkedList implements List {
         System.out.println("indexOf(Object o): " + list.indexOf(new Cat(3, 3, 0.52, "white", "Murka", true)));
 
         System.out.println("contains(Object o): " + list.contains(new Cat(3, 3, 0.52, "white", "Murka", true)));
+
+        System.out.println("getFirst(): " + list.getFirst());
+        System.out.println("getLast(): " + list.getLast());
     }
 }
