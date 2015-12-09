@@ -8,36 +8,41 @@ import org.junit.Test;
  */
 public class LinkedListTest {
 
-    @BeforeClass
-    public static void setUpClass() {
-        // Выполняется только один раз
-        System.out.println("setUpClass");
-    }
+    LinkedList linkedList;
 
     @Before
     public void setUp() {
-        // Выполняется перед тестом, то есть подготовка теста
-        System.out.println("setUp");
+        linkedList = new LinkedList();
     }
 
     @Test
     public void testSizeEmpty() {
-        System.out.println("Test1");
+        int size = linkedList.size();
+        Assert.assertEquals("Expected size empty", 0, size);
     }
 
     @Test
     public void testSizeNotEmpty() {
-        System.out.println("Test2");
+        Integer first = 1;
+        Integer second = 2;
+
+        linkedList.add(first);
+        linkedList.add(second);
+
+        Assert.assertEquals(2, linkedList.size());
     }
 
-    @After
-    public void tearDown() {
-        // Выполняется после каждого теста
-        System.out.println("tearDown");
+    @Test
+    public void testRemove() {
+        Integer first = 1;
+        Integer second = 2;
+
+        linkedList.add(first);
+        linkedList.add(second);
+        boolean result = linkedList.remove(0);
+
+        Assert.assertEquals(2, linkedList.size());
+        Assert.assertFalse(result);
     }
 
-    @AfterClass
-    public static void tearDownClass() {
-        System.out.println("tearDownClass");
-    }
 }
