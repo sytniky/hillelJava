@@ -79,4 +79,31 @@ public class LinkedListTest {
         Assert.assertArrayEquals(new Object[]{1, 2}, linkedList.toArray());
     }
 
+    @Test
+    public void testAddAll() {
+        linkedList.add(1);
+        linkedList.add(2);
+
+        LinkedList linkedList2 = new LinkedList();
+        linkedList2.add(3);
+        linkedList2.add(4);
+
+        linkedList.addAll(linkedList2);
+
+        Assert.assertEquals(4, linkedList.size());
+    }
+
+    @Test
+    public void testRemoveAll() {
+        linkedList.add(1);
+        linkedList.add(2);
+
+        LinkedList linkedList2 = new LinkedList();
+        linkedList2.add(1);
+
+        linkedList.removeAll(linkedList2);
+
+        Assert.assertEquals(1, linkedList.size());
+    }
+
 }

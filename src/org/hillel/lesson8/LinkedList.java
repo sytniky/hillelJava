@@ -1,5 +1,7 @@
 package org.hillel.lesson8;
 
+import sun.jvm.hotspot.utilities.ObjectReader;
+
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -139,12 +141,20 @@ public class LinkedList implements Collection {
 
     @Override
     public boolean addAll(Collection c) {
-        return false;
+        Object[] arr = c.toArray();
+        for (Object o : arr) {
+            add(o);
+        }
+        return true;
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        Object[] arr = c.toArray();
+        for (Object o : arr) {
+            if (!remove(o)) throw new RuntimeException("Object " + o + " can't be removed");
+        }
+        return true;
     }
 
     @Override
