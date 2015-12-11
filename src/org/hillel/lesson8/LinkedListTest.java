@@ -43,6 +43,40 @@ public class LinkedListTest {
 
         Assert.assertEquals(2, linkedList.size());
         Assert.assertFalse(result);
+
+        result = linkedList.remove(1);
+        Assert.assertTrue(result);
+        Assert.assertEquals(1, linkedList.size());
+
+        result = linkedList.remove(2);
+        Assert.assertTrue(result);
+        Assert.assertEquals(0, linkedList.size());
+    }
+
+    @Test
+    public void testContains() {
+        Integer first = 1;
+        Integer second = 2;
+
+        linkedList.add(first);
+        linkedList.add(second);
+
+        boolean result = linkedList.contains(1);
+        Assert.assertTrue("Expected contains() returns true", result);
+
+        result = linkedList.contains(10);
+        Assert.assertFalse("Expected contains() returns false", result);
+    }
+
+    @Test
+    public void testToArray() {
+        Integer first = 1;
+        Integer second = 2;
+
+        linkedList.add(first);
+        linkedList.add(second);
+
+        Assert.assertArrayEquals(new Object[]{1, 2}, linkedList.toArray());
     }
 
 }

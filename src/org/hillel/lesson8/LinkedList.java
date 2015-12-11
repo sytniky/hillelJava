@@ -28,7 +28,20 @@ public class LinkedList implements Collection {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return indexOf(o) != -1;
+    }
+
+    private int indexOf(Object o) {
+        int index = 0;
+        Node currentElement = first;
+        while (currentElement != null) {
+            if (o.equals(currentElement.getData())) {
+                return index;
+            }
+            currentElement = currentElement.getNext();
+            index++;
+        }
+        return -1;
     }
 
     @Override
@@ -38,7 +51,14 @@ public class LinkedList implements Collection {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] result = new Object[size()];
+        int index = 0;
+        Node currentElement = first;
+        while (currentElement != null) {
+            result[index++] = currentElement.getData();
+            currentElement = currentElement.getNext();
+        }
+        return result;
     }
 
     @Override
@@ -75,10 +95,14 @@ public class LinkedList implements Collection {
         if (nodeToRemove == null) {
             return false;
         }
+
         Node previousNode = findPreviousNode(nodeToRemove);
-
-
-        return false;
+        if (previousNode == null) {
+            first = nodeToRemove.getNext();
+        } else {
+            previousNode.setNext(nodeToRemove.getNext());
+        }
+        return true;
     }
 
     private Node findPreviousNode(Node nodeToRemove) {
@@ -86,15 +110,15 @@ public class LinkedList implements Collection {
             return null;
         }
 
-        Node currenNode = first;
-        if (currenNode == null) {
+        Node currentNode = first;
+        if (currentNode == null) {
             return null;
         }
-        while (currenNode.getNext() != null
-                && !currenNode.getNext().equals(nodeToRemove)) {
-            currenNode = currenNode.getNext();
+        while (currentNode.getNext() != null
+                && !currentNode.getNext().equals(nodeToRemove)) {
+            currentNode = currentNode.getNext();
         }
-        return currenNode;
+        return currentNode;
     }
 
     private Node findFirstNode(Object o) {
