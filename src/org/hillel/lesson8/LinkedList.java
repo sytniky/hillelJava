@@ -152,7 +152,8 @@ public class LinkedList implements Collection {
     public boolean removeAll(Collection c) {
         Object[] arr = c.toArray();
         for (Object o : arr) {
-            if (!remove(o)) throw new RuntimeException("Object " + o + " can't be removed");
+            if (!remove(o)) throw new RuntimeException(
+                    "Object " + o + " can't be removed");
         }
         return true;
     }
