@@ -48,7 +48,20 @@ public class LinkedList implements Collection {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new Iterator() {
+            Node currentElement = first;
+            @Override
+            public boolean hasNext() {
+                return currentElement != null;
+            }
+
+            @Override
+            public Object next() {
+                Object data = currentElement.getData();
+                currentElement = currentElement.getNext();
+                return data;
+            }
+        };
     }
 
     @Override
@@ -166,5 +179,22 @@ public class LinkedList implements Collection {
     @Override
     public void clear() {
         first = null;
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+
+        for (Object i : list) {
+            System.out.println(i);
+        }
+
+//        Iterator it = list.iterator();
+//        while (it.hasNext()) {
+//            System.out.println(it.next());
+//        }
     }
 }
