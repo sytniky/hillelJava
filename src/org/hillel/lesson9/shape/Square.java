@@ -23,8 +23,8 @@ public class Square extends Shape {
     @Override
     public String toString() {
         return "Square{" +
-                "color=" + getColor() + "," +
-                "sideLength=" + sideLength +
+                "color=" + getColor() +
+                ", sideLength=" + sideLength +
                 '}';
     }
 }
