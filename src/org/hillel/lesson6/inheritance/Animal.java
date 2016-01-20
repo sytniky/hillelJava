@@ -4,6 +4,7 @@ package org.hillel.lesson6.inheritance;
  * Created by yuriy on 24.11.15.
  */
 public abstract class Animal {
+//public abstract class Animal implements Comparable {
 
     private int id;
     private int age;
@@ -70,4 +71,9 @@ public abstract class Animal {
         return !(color != null ? !color.equals(animal.color) : animal.color != null);
 
     }
+
+//    @Override
+//    public int compareTo(Object o) {
+//        return Integer.compare(this.getId(), ((Animal)o).getId());
+//    }
 }
