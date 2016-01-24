@@ -49,7 +49,6 @@ public class CustomHashMap {
 
     public static void main(String[] args) {
 
-
         Random rand = new Random(47);
         CustomHashMap hashMap = new CustomHashMap();
         Dog[] dogs = new Dog[10000];
@@ -67,7 +66,6 @@ public class CustomHashMap {
 //            System.out.println(dog + " | received value: " + hashMap.get(dog));
 //        }
 
-
         for (int i = 0; i < dogs.length; i++) {
 
             int value = rand.nextInt(10);
@@ -78,7 +76,6 @@ public class CustomHashMap {
 
             dogs[i] = dog;
         }
-
 
         Dog rDog = dogs[8000];
 
@@ -114,10 +111,10 @@ class Dog {
 
     @Override
     public int hashCode() {
-//        int result = age;
-//        result = 31 * result + (name != null ? name.hashCode() : 0);
-//        return result;
-       return 1;
+        int result = age;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+//       return 1;
     }
 
     @Override
