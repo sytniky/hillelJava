@@ -92,6 +92,7 @@ public class SumSearcher {
         list2.add(45);
         list2.add(1);
         list2.add(1);
+        System.out.println(list2);
 
         searcher.setList(list2);
         searcher.setTarget(12);
