@@ -1,0 +1,8 @@
+in=5
+a=4
+the=11
+his=9
+no=5
+everything,=5
+and=6
+of=5
