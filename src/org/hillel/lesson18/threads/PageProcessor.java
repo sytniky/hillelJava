@@ -16,6 +16,7 @@ public class PageProcessor implements Runnable {
 
     @Override
     public void run() {
+        System.out.println(Thread.currentThread().getName());
         Map<String, Integer> map = WordProcessor.countWords(inPath);
 //        Thread.yield();
         WordProcessor.saveWords(map, outPath);
