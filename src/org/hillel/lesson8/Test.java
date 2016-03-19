@@ -1,9 +1,5 @@
 package org.hillel.lesson8;
 
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-
 /**
  * Created by yuriy on 04.12.15.
  */
