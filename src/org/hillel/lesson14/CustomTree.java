@@ -7,7 +7,7 @@ public class CustomTree {
 
     Node root;
 
-    public void addNode(int key, String value) {
+    public void add(int key, String value) {
         Node node = new Node(key, value);
 
         if (root == null) {
@@ -36,7 +36,7 @@ public class CustomTree {
         }
     }
 
-    public Node findNode(int key) {
+    public Node get(int key) {
         if (root == null) {
             return null;
         }
@@ -69,17 +69,17 @@ public class CustomTree {
 
     public static void main(String[] args) {
         CustomTree tree = new CustomTree();
-        tree.addNode(19, "Dog");
-        tree.addNode(5, "Cat");
-        tree.addNode(24, "Cat");
-        tree.addNode(4, "Duck");
-        tree.addNode(7, "Turtle");
+        tree.add(19, "Dog");
+        tree.add(5, "Cat");
+        tree.add(24, "Cat");
+        tree.add(4, "Duck");
+        tree.add(7, "Turtle");
 
         tree.traverse(tree.root);
 
-        System.out.println(tree.findNode(24));
-        System.out.println(tree.findNode(4));
-        System.out.println(tree.findNode(10));
+        System.out.println(tree.get(24));
+        System.out.println(tree.get(4));
+        System.out.println(tree.get(10));
 
     }
 
