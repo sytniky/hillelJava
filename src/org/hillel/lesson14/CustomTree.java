@@ -36,7 +36,7 @@ public class CustomTree {
         }
     }
 
-    public Node get(int key) {
+    public String get(int key) {
         if (root == null) {
             return null;
         }
@@ -44,7 +44,7 @@ public class CustomTree {
         Node currentNode = root;
         while (true) {
             if (key == currentNode.key) {
-                return currentNode;
+                return currentNode.value;
             } else if (key < currentNode.key) {
                 currentNode = currentNode.leftChild;
                 if (currentNode == null) {
