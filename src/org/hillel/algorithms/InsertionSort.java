@@ -27,7 +27,6 @@ public class InsertionSort {
     }
 
     public static void main(String[] args) {
-//        test
         Integer[] array = new Integer[]{23, 23, 4, 2, 5, 6, 45, 3, 43, 26, 567, 2, 1, 48, 9};
         System.out.println(Arrays.toString(array));
         sort(array);
