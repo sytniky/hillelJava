@@ -1,7 +1,5 @@
 package org.hillel.lesson8;
 
-import sun.jvm.hotspot.utilities.ObjectReader;
-
 import java.util.Collection;
 import java.util.Iterator;
 
